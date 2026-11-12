@@ -21,7 +21,8 @@ namespace BeatTogether.UnifiedServer
            Host.CreateDefaultBuilder(args).ConfigureAPIServices().UseStatusServer().UseDedicatedServerInstancing().UseMasterServerApi();
 
         public static IHostBuilder ConfigureAPIServices(this IHostBuilder hostBuilder) =>
-            hostBuilder.ConfigureServices(services => services.AddControllers()
+            hostBuilder.ConfigureServices(services => services.AddControllers(options => options.Filters.Add<ProtocolVersionFilter>())
+                .AddApplicationPart(typeof(StatusCompatibilityController).Assembly)
                 .AddApplicationPart(Assembly.GetAssembly(typeof(QuickplayController))!)
                 .AddApplicationPart(Assembly.GetAssembly(typeof(StatusController))!)
                 .AddApplicationPart(Assembly.GetAssembly(typeof(GetMultiplayerInstanceController))!)

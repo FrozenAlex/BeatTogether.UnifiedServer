@@ -1,6 +1,8 @@
+> Local experimental 1.45.3 port: see [build instructions, changes and runtime limits](docs/port-1.45.3.md). The PC dependency stack and live crossplay still need validation.
+
 # BeatTogether.UnifiedServer
 A multiplayer private server for the modding community. Supports crossplay between PC and Quest.
-This server works for game versions 1.37.0 and upwards
+This local port targets game version 1.45.3 with compatibility A31AF687.
 
 ## Note
 If you are looking to just play BeatTogether you can download it for your respective platform at the links below. This repository is for contribution to the server that runs the matchmaking services.
@@ -13,7 +15,7 @@ Quest: [here](https://github.com/pythonology/BeatTogether.Quest#installation).
 
 ### All in one server
 
-Head to the releases tab and download the latest release.
+Build this local branch using the instructions in [the port handoff](docs/port-1.45.3.md); it has not been published as a release.
 
 ### Ports
 Make sure the following ports are accessible by the game
@@ -42,7 +44,7 @@ This example config works for hosting your own local server instance.
     }
   },
   "Status": { //Status api configuration
-    "MinimumAppVersion": "1.37.0",             // Minumum game version to join
+    "MinimumAppVersion": "1.45.3",             // Minumum game version to join
     "ServerDisplayName": "BeatTogether server",// The name of your server
     "ServerDescription": "",                   // The description of your server
     "ServerImageUrl": "",                      // The icon displayed for your server
@@ -54,11 +56,11 @@ This example config works for hosting your own local server instance.
     "RequiredMods": [                          // minimum required mod versions, if installed. Used when we know there is a mod that causes issues with multiplayer, and informs the client to use a newer version of that mod to prevent game crashes
       {
         "id": "MultiplayerCore",
-        "version": "1.2.0"
+        "version": "1.6.8"
       },
       {
         "id": "BeatTogether",
-        "version": "2.0.1"
+        "version": "2.2.6"
       },
       {
         "id": "BeatSaberPlus_SongOverlay",
@@ -102,6 +104,7 @@ This example config works for hosting your own local server instance.
     ]
   },
   "ServerConfiguration": {
+    "VersionRanges": [{ "MinVersion": "1.45.3", "MaxVersion": "1.45.3" }],
     "HostEndpoint": "127.0.0.1",     // The endpoint that is used to host lobbies
     "AuthenticateClients": true,      // Whether clients should be authenticated
     "BasePort": 30000,               // The ports for individual lobbies start here
